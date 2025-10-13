@@ -7,7 +7,7 @@ import LoginPage from './LoginPage.js';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
-    <LoginPage />
+    <App className="App" />
+    <LoginPage className="LoginPage" />
   </React.StrictMode>
 );

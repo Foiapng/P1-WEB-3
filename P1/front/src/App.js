@@ -37,10 +37,10 @@ function App() {
 
   return (
     <>
-      <Container>
-        <Title>USUÁRIOS</Title>
-        <Form onEdit={onEdit} setOnEdit={setOnEdit} getUsers={getUsers} />
-        <Grid users={users} setUsers={setUsers} setOnEdit={setOnEdit} />
+      <Container className="UsuariosContainer">
+        <Title className="UsuariosTitle">USUÁRIOS</Title>
+        <Form className="UsuariosForm" onEdit={onEdit} setOnEdit={setOnEdit} getUsers={getUsers} />
+        <Grid className="UsuariosGrid" users={users} setUsers={setUsers} setOnEdit={setOnEdit} />
       </Container>
 
       <ToastContainer autoClose={300} position="bottom-left" />

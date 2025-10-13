@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import "src/styles/login.css"
 import styled from "styled-components";
 import { toast } from "react-toastify";
 
@@ -58,18 +59,18 @@ const Login = () => {
 
 
   return (
-    <LoginContainer>
-        <Title>Login</Title>
-        <InputArea>
+    <LoginContainer className="LoginConteiner">
+        <Title className="TitleLogin">Login</Title>
+        <InputArea className="InputAreaLogin">
             <Label>E-mail</Label>
             <Input name="email" type="email" />
         </InputArea>
-        <InputArea>
+        <InputArea className="InputAreaLogin">
             <Label>Senha</Label>
             <Input name="senha" type="password" />
         </InputArea>
 
-        <Button type="submit">Entrar</Button>
+        <Button type="submit" className="ButtonLogin">Entrar</Button>
     </LoginContainer>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import "src/styles/usuarios.css"
 import { toast } from "react-toastify";
 
 const FormContainer = styled.form`
@@ -113,29 +114,29 @@ const Form = ({ getUsers, onEdit, setOnEdit }) => {
   };
 
   return (
-    <FormContainer ref={ref} onSubmit={handleSubmit}>
-      <InputArea>
+    <FormContainer className="UsuariosFormContainer" ref={ref} onSubmit={handleSubmit}>
+      <InputArea className="UsuariosInputArea">
         <Label>Nome</Label>
         <Input name="nome" />
       </InputArea>
-      <InputArea>
+      <InputArea className="UsuariosInputArea">
         <Label>E-mail</Label>
         <Input name="email" type="email" />
       </InputArea>
-      <InputArea>
+      <InputArea className="UsuariosInputArea">
         <Label>Senha</Label>
         <Input name="senha" type="password" />
       </InputArea>
-      <InputArea>
+      <InputArea className="UsuariosInputArea">
         <Label>Telefone</Label>
         <Input name="telefone" />
       </InputArea>
-      <InputArea>
+      <InputArea className="UsuariosInputArea">
         <Label>Data de Nascimento</Label>
         <Input name="data_nascimento" type="date" />
       </InputArea>
 
-      <Button type="submit">Salvar</Button>
+      <Button type="submit" className="UsuariosButton">Salvar</Button>
     </FormContainer>
   );
 };

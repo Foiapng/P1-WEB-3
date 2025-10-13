@@ -57,8 +57,8 @@ const Grid = ({ users, setUsers, setOnEdit }) => {
   };
 
   return (
-    <Table>
-      <Thead>
+    <Table className="UsuariosTable">
+      <Thead className="UsuariosThead">
         <Tr>
           <Th>Nome</Th>
           <Th>Email</Th>
