@@ -10,12 +10,9 @@ import "./styles/global.css"
 const FooterInfo = () => {     
     return(
         <footer className='Footer'>
-                <ul className="FooterInfo">
-                    <li className="NavLogin"><Link to='*' className="NavBtn">Contato</Link></li>
-                </ul>
+            <p className='FooterInfo'>Bla bla bla contato</p>
         </footer>
     );
 };
 
-export default FooterInfo
-;
+export default FooterInfo;
