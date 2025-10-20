@@ -1,8 +1,9 @@
-import GlobalStyle from "./styles/global.js";
+import GlobalStyle from "./components/styles/global.js";
 import { toast, ToastContainer } from "react-toastify";
 import { useEffect, useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
-import "./styles/login.css"
+import "./components/styles/global.css";
+import "./components/styles/login.css";
 import styled from "styled-components";
 import Login from "./components/login.js";
 import axios from "axios";
@@ -37,9 +38,9 @@ function LoginPage() {
 
   return (
     <>
-        <Container className="LoginContainer">
+        <div className="LoginPageContainer">
             <Login className="Login" />
-        </Container>
+        </div>
 
       <ToastContainer autoClose={300} position="bottom-left" />
       <GlobalStyle />

@@ -1,72 +1,36 @@
 import React, { useRef, useEffect } from "react";
-import styled from "styled-components";
 import axios from "axios";
-import "src/styles/usuarios.css"
 import { toast } from "react-toastify";
-
-const FormContainer = styled.form`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  background-color: #fff;
-  padding: 20px;
-  box-shadow: 0px 0px 5px #ccc;
-  border-radius: 5px;
-`;
-
-const InputArea = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Input = styled.input`
-  width: 120px;
-  height: 40px;
-  padding: 0 10px;
-  border: 1px solid #bbb;
-  border-radius: 5px;
-`;
-
-const Label = styled.label``;
-
-const Button = styled.button`
-  padding: 10px;
-  cursor: pointer;
-  border-radius: 5px;
-  border: none;
-  background-color: #2c7352;
-  color: #fff;
-  height: 42px;
-
-  &:hover {
-    background-color: #183f2cff;
-  }
-`;
+import "./styles/usuarios.css";
 
 const Form = ({ getUsers, onEdit, setOnEdit }) => {
   const ref = useRef();
 
-  useEffect(() => {
-    const user = ref.current;
-    if (onEdit) {
-      user.nome.value = onEdit.nome;
-      user.email.value = onEdit.email;
-      user.senha.value = onEdit.senha;
-      user.telefone.value = onEdit.telefone;
-      user.data_nascimento.value = onEdit.data_nascimento;
-    } else {
-      user.nome.value = "";
-      user.email.value = "";
-      user.senha.value = "";
-      user.telefone.value = "";
-      user.data_nascimento.value = "";
+useEffect(() => {
+  const user = ref.current;
+  if (onEdit) {
+    user.nome.value = onEdit.nome;
+    user.email.value = onEdit.email;
+    user.senha.value = onEdit.senha;
+    user.telefone.value = onEdit.telefone;
+
+    // Converter a data para YYYY-MM-DD
+    if (onEdit.data_nascimento) {
+      const date = new Date(onEdit.data_nascimento);
+      const formattedDate = date.toISOString().split("T")[0]; // YYYY-MM-DD
+      user.data_nascimento.value = formattedDate;
     }
-  }, [onEdit]);
+  } else {
+    user.nome.value = "";
+    user.email.value = "";
+    user.senha.value = "";
+    user.telefone.value = "";
+    user.data_nascimento.value = "";
+  }
+}, [onEdit]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const user = ref.current;
 
     if (
@@ -80,8 +44,9 @@ const Form = ({ getUsers, onEdit, setOnEdit }) => {
     }
 
     try {
-      if (onEdit) {
-        await axios.put(`http://localhost:8800/${onEdit.idusuario}`, {
+      if (onEdit && onEdit.idusuarios) {
+        // PUT corrigido com /usuarios
+        await axios.put(`http://localhost:8800/usuarios/${onEdit.idusuarios}`, {
           nome: user.nome.value,
           email: user.email.value,
           senha: user.senha.value,
@@ -90,7 +55,8 @@ const Form = ({ getUsers, onEdit, setOnEdit }) => {
         });
         toast.success("Usuário atualizado com sucesso!");
       } else {
-        await axios.post("http://localhost:8800", {
+        // POST corrigido com /usuarios
+        await axios.post("http://localhost:8800/usuarios", {
           nome: user.nome.value,
           email: user.email.value,
           senha: user.senha.value,
@@ -100,6 +66,7 @@ const Form = ({ getUsers, onEdit, setOnEdit }) => {
         toast.success("Usuário adicionado com sucesso!");
       }
 
+      // Limpar formulário
       user.nome.value = "";
       user.email.value = "";
       user.senha.value = "";
@@ -114,30 +81,39 @@ const Form = ({ getUsers, onEdit, setOnEdit }) => {
   };
 
   return (
-    <FormContainer className="UsuariosFormContainer" ref={ref} onSubmit={handleSubmit}>
-      <InputArea className="UsuariosInputArea">
-        <Label>Nome</Label>
-        <Input name="nome" />
-      </InputArea>
-      <InputArea className="UsuariosInputArea">
-        <Label>E-mail</Label>
-        <Input name="email" type="email" />
-      </InputArea>
-      <InputArea className="UsuariosInputArea">
-        <Label>Senha</Label>
-        <Input name="senha" type="password" />
-      </InputArea>
-      <InputArea className="UsuariosInputArea">
-        <Label>Telefone</Label>
-        <Input name="telefone" />
-      </InputArea>
-      <InputArea className="UsuariosInputArea">
-        <Label>Data de Nascimento</Label>
-        <Input name="data_nascimento" type="date" />
-      </InputArea>
+    <form className="UsuariosFormContainer" ref={ref} onSubmit={handleSubmit}>
+      <h1 className="UsuariosTitle">Usuários</h1>
+      <div className="UsuariosFormInputs">
+          <div className="UsuariosInputArea">
+            <label>Nome</label>
+            <input name="nome" />
+          </div>
 
-      <Button type="submit" className="UsuariosButton">Salvar</Button>
-    </FormContainer>
+          <div className="UsuariosInputArea">
+            <label>E-mail</label>
+            <input name="email" type="email" autoComplete="email" />
+          </div>
+
+          <div className="UsuariosInputArea">
+            <label>Senha</label>
+            <input name="senha" type="password" />
+          </div>
+
+          <div className="UsuariosInputArea">
+            <label>Telefone</label>
+            <input name="telefone" />
+          </div>
+          
+          <div className="UsuariosInputArea">
+            <label>Nascimento</label>
+            <input name="data_nascimento" type="date" />
+          </div>
+      </div>
+
+      <button type="submit" className="UsuariosButton">
+        Salvar
+      </button>
+    </form>
   );
 };
 

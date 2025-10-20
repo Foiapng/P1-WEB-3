@@ -1,0 +1,110 @@
+.UsuariosContainer {
+    width: 100%;
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.Usuarios {
+    background-color: #000;
+    border-radius: 5px;
+    padding: 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Form */
+
+.UsuariosTitle {
+    color: #fff;
+    margin-bottom: 5%;
+}
+
+
+.UsuariosFormContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    background-color: #000000;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.UsuariosFormInputs {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+}
+
+
+.UsuariosInputArea {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.UsuariosInputArea input{
+    width: 100px;
+    height: 40px;
+    padding: 0 10px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+}
+
+.UsuariosInputArea label{
+    color: #ffffff;
+}
+
+
+.UsuariosButton{
+    font-size: 1rem;
+    align-self: center;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(55, 55, 55);
+    color: #fff;
+    height: 42px;
+    width: 100%;
+}
+
+.UsuariosButton:hover {
+    background-color: #ffffff;
+    color: #000000;
+    transition: ease-in-out 0.1s;
+}
+
+
+
+/* Grid */
+
+
+.UsuariosTable{
+    margin-top: 1%;
+    width: 100%;
+    background-color: #000000;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 800px;
+    margin: 20px auto;
+    word-break: break-all;
+    color: #fff;
+    border-collapse: collapse;
+}
+
+.UsuariosTr th{
+    text-align: start;
+    border-bottom: inset;
+    padding-bottom: 5px;
+}
+
+
+

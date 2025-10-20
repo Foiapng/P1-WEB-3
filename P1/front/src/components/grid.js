@@ -3,21 +3,8 @@ import axios from "axios";
 import styled from "styled-components";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import { toast } from "react-toastify";
+import "./styles/usuarios.css";
 
-const Table = styled.table`
-  width: 100%;
-  background-color: #fff;
-  padding: 20px;
-  /* box-shadow: 0px 5px #ccc; */
-  border-radius: 5px;
-  max-width: 800px;
-  margin: 20px auto;
-  word-break: break-all;
-`;
-
-export const Thead = styled.thead``;
-export const Tbody = styled.tbody``;
-export const Tr = styled.tr``;
 
 export const Th = styled.th`
   text-align: start;
@@ -41,36 +28,37 @@ export const Td = styled.td`
 
 const Grid = ({ users, setUsers, setOnEdit }) => {
   const handleEdit = (item) => {
+    console.log(item); 
     setOnEdit(item);
   };
 
-  const handleDelete = async (idusuario) => {
-    try {
-      const { data } = await axios.delete(`http://localhost:8800/${idusuario}`);
-      const newArray = users.filter((user) => user.idusuario !== idusuario);
-      setUsers(newArray);
-      toast.success(data || "Usuário deletado com sucesso!");
-      setOnEdit(null);
-    } catch (err) {
-      toast.error(err.response?.data || "Erro ao excluir usuário");
-    }
-  };
+const handleDelete = async (idusuarios) => {
+  try {
+    const { data } = await axios.delete(`http://localhost:8800/usuarios/${idusuarios}`);
+    setUsers(users.filter((user) => user.idusuarios !== idusuarios));
+    toast.success(data || "Usuário deletado com sucesso!");
+    setOnEdit(null);
+  } catch (err) {
+    toast.error(err.response?.data || "Erro ao excluir usuário");
+  }
+};
+
 
   return (
-    <Table className="UsuariosTable">
-      <Thead className="UsuariosThead">
-        <Tr>
+    <table className="UsuariosTable">
+      <thead className="UsuariosThead">
+        <tr className="UsuariosTr">
           <Th>Nome</Th>
           <Th>Email</Th>
           <Th onlyweb>Telefone</Th>
           <Th></Th>
           <Th></Th>
-        </Tr>
-      </Thead>
+        </tr>
+      </thead>
 
-      <Tbody>
+      <tbody className="UsuariosTbody">
         {users.map((item, i) => (
-          <Tr key={i}>
+          <tr key={i}>
             <Td width="30%">{item.nome}</Td>
             <Td width="30%">{item.email}</Td>
             <Td width="20%" onlyweb>
@@ -78,16 +66,16 @@ const Grid = ({ users, setUsers, setOnEdit }) => {
             </Td>
 
             <Td alignCenter width="5%">
-              <FaEdit onClick={() => handleEdit(item)} style={{ cursor: "pointer", color: "#0077cc" }} />
+              <FaEdit onClick={() => handleEdit(item)} style={{ cursor: "pointer", color: "#ffffffff" }} />
             </Td>
 
             <Td alignCenter width="5%">
-              <FaTrash onClick={() => handleDelete(item.idusuario)} style={{ cursor: "pointer", color: "#cc0000" }} />
+              <FaTrash onClick={() => handleDelete(item.idusuarios)} style={{ cursor: "pointer", color: "#ffffffff" }} />
             </Td>
-          </Tr>
+          </tr>
         ))}
-      </Tbody>
-    </Table>
+      </tbody>
+    </table>
   );
 };
 

@@ -1,0 +1,38 @@
+.NavBar {
+    display: flex;
+    position: sticky;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 75px;
+    background-color: black;
+    padding: 10px 8%;
+    box-sizing: border-box;
+    max-width: 100vw;
+    font-size: 1rem;
+    color: white;
+}
+
+.NavList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.NavBtn {
+    display: inline-block;
+    background: none;
+    border: none;
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+.NavBtn:hover {
+    cursor: pointer;
+    color: #ababab;
+}

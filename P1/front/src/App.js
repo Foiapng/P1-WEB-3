@@ -1,22 +1,14 @@
-import GlobalStyle from "./styles/global.js";
+import GlobalStyle from "./components/styles/global.js";
 import { toast, ToastContainer } from "react-toastify";
 import { useEffect, useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
+import "./components/styles/usuarios.css"
+import "./components/styles/global.css"
 import styled from "styled-components";
 import Form from "./components/form.js";
 import Grid from "./components/grid.js";
 import axios from "axios";
 
-const Container = styled.div`
-  width: 100%;
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-`;
-
-const Title = styled.h2``;
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -24,7 +16,7 @@ function App() {
 
   const getUsers = async () => {
     try {
-      const res = await axios.get("http://localhost:8800");
+      const res = await axios.get("http://localhost:8800/usuarios");
       setUsers(res.data.sort((a, b) => (a.nome > b.nome ? 1 : -1)));
     } catch (error) {
       toast.error("Erro ao buscar usuários");
@@ -37,11 +29,12 @@ function App() {
 
   return (
     <>
-      <Container className="UsuariosContainer">
-        <Title className="UsuariosTitle">USUÁRIOS</Title>
-        <Form className="UsuariosForm" onEdit={onEdit} setOnEdit={setOnEdit} getUsers={getUsers} />
-        <Grid className="UsuariosGrid" users={users} setUsers={setUsers} setOnEdit={setOnEdit} />
-      </Container>
+      <div className="UsuariosContainer">
+          <div className="Usuarios">
+            <Form className="UsuariosForm" onEdit={onEdit} setOnEdit={setOnEdit} getUsers={getUsers} />
+            <Grid className="UsuariosGrid" users={users} setUsers={setUsers} setOnEdit={setOnEdit} />
+          </div>
+      </div>
 
       <ToastContainer autoClose={300} position="bottom-left" />
       <GlobalStyle />

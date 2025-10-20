@@ -33,7 +33,7 @@ export const addUser = (req, res) => {
 
 export const updateUser = (req, res) => {
     const q =
-        "UPDATE usuarios SET `nome` = ?, `email` = ?, `senha` = ?, `telefone` = ?, `data_nascimento` = ? WHERE `idusuario` = ?";
+        "UPDATE usuarios SET `nome` = ?, `email` = ?, `senha` = ?, `telefone` = ?, `data_nascimento` = ? WHERE `idusuarios` = ?";
 
 
     const values = [
@@ -44,7 +44,7 @@ export const updateUser = (req, res) => {
         req.body.data_nascimento,
     ];    
 
-    db.query(q, [...values, req.params.idusuario], (err) => {
+    db.query(q, [...values, req.params.idusuarios], (err) => {
         if (err) return res.json(err);
 
         return res.status(200).json("Usuario atualizado com sucesso.")
@@ -55,12 +55,12 @@ export const updateUser = (req, res) => {
 
 export const deleteUser = (req, res) => {
     const q =
-        "DELETE usuarios WHERE `idusuario` = ?";
+        "DELETE FROM usuarios WHERE `idusuarios` = ?";
 
-    db.query(q, [req.params.idusuario], (err) => {
+    db.query(q, [req.params.idusuarios], (err) => {
         if (err) return res.json(err);
 
         return res.status(200).json("Usuario deletado com sucesso.")
     });
-
+    
 };
