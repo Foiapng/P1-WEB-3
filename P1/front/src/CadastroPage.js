@@ -2,16 +2,16 @@ import { toast, ToastContainer } from "react-toastify";
 import { useEffect, useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import "./components/styles/global.css";
-import "./components/styles/login.css";
-import Login from "./components/login.js";
+import "./components/styles/cadastro.css";
+import Cadastro from "./components/cadastro.js";
 import axios from "axios";
 
 
-function LoginPage() {
+function CadastroPage() {
   return (
     <>
-        <div className="LoginPageContainer">
-            <Login className="Login" />
+        <div className="CadastroPageContainer">
+            <Cadastro className="Cadastro" />
         </div>
 
       <ToastContainer autoClose={300} position="bottom-left" />
@@ -19,4 +19,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default CadastroPage;

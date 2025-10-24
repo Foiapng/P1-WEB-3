@@ -13,6 +13,7 @@ const NavBar = () => {
                 <ul className="NavList">
                     <li className="NavUsuários"><Link to= '/' className="NavBtn">Home</Link></li>
                     <li className="NavLogin"><Link to='/Login' className="NavBtn">Login</Link></li>
+                    <li className="NavLogin"><Link to='/Cadastro' className="NavBtn">Cadastro</Link></li>
                 </ul>
         </header>
     );

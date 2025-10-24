@@ -83,32 +83,32 @@ useEffect(() => {
   return (
     <form className="UsuariosFormContainer" ref={ref} onSubmit={handleSubmit}>
       <h1 className="UsuariosTitle">Usuários</h1>
-      <div className="UsuariosFormInputs">
-          <div className="UsuariosInputArea">
+      <section className="UsuariosFormInputs">
+          <section className="UsuariosInputArea">
             <label>Nome</label>
             <input name="nome" />
-          </div>
+          </section>
 
-          <div className="UsuariosInputArea">
+          <section className="UsuariosInputArea">
             <label>E-mail</label>
             <input name="email" type="email" autoComplete="email" />
-          </div>
+          </section>
 
-          <div className="UsuariosInputArea">
+          <section className="UsuariosInputArea">
             <label>Senha</label>
             <input name="senha" type="password" />
-          </div>
+          </section>
 
-          <div className="UsuariosInputArea">
+          <section className="UsuariosInputArea">
             <label>Telefone</label>
             <input name="telefone" />
-          </div>
+          </section>
           
-          <div className="UsuariosInputArea">
+          <section className="UsuariosInputArea">
             <label>Nascimento</label>
             <input name="data_nascimento" type="date" />
-          </div>
-      </div>
+          </section>
+      </section>
 
       <button type="submit" className="UsuariosButton">
         Salvar

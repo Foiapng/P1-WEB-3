@@ -1,4 +1,4 @@
-.LoginPageContainer {
+.CadastroPageContainer {
     width: 100%;
     display: flex;
     align-items: center;
@@ -7,7 +7,7 @@
     margin-top: 5%;
 }
 
-.LoginContainer {
+.CadastroContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -15,23 +15,23 @@
     gap: 20px;
     flex-wrap: nowrap;
     background-color: #000000ff;
-    padding: 150px 100px;
+    padding: 150px 30px 200px;
     border-radius: 5px;
-    height: 200px;
+    height: 450px;
     width: 50%;
 }
 
-.InputAreaLogin{
+.InputAreaCadastro{
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 90%;
     align-items: left;
     justify-content: center;
 }
 
-.InputAreaLogin input{
-    width: 100%;
-    padding: 0 10px;
+.InputAreaCadastro input{
+    width:  100%;
+    padding: 0px 10px;
     border: 1px solid #bbb;
     border-radius: 5px;
     -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
@@ -39,27 +39,34 @@
     box-sizing: border-box;         /* Opera/IE 8+ */
 }
 
-.InputAreaLogin label {
+.InputAreaCadastro label {
     color: #fff;
 }
 
-.TitleLogin{
+.InputGroupCadastro {
+    /* display: flex;
+    flex-direction: row; */
+    width: 100%;
+    /* gap: 10px; */
+}
+
+.TitleCadastro{
+    width: 90%;
+    margin-top: 10%;
     color: #fff;
-    margin-bottom: 5%;
+
 }
 
 
-.ButtonLogin {
+.ButtonCadastro {
     padding: 10px;
     cursor: pointer;
     border-radius: 5px;
     border: none;
     height: 50px;
-    width: 100%;
-    display: flex; 
+    display: flex;
     justify-content: center;
-    margin-top: 5%;
     font-size: 1.1rem;
+    margin-top: 10px;
+    width: 90%;
 }
-
-
