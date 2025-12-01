@@ -7,6 +7,23 @@ import "./styles/global.css"
 const Form = ({ getUsers, onEdit, setOnEdit }) => {
   const ref = useRef();
 
+    const formatPhone = (value) => {
+    if (!value) return "";
+    value = value.replace(/\D/g, "");
+
+    if (value.length > 11) value = value.slice(0, 11);
+
+    if (value.length <= 10) {
+      return value
+        .replace(/(\d{2})(\d)/, "($1) $2")
+        .replace(/(\d{4})(\d)/, "$1-$2");
+    }
+
+    return value
+      .replace(/(\d{2})(\d)/, "($1) $2")
+      .replace(/(\d{5})(\d)/, "$1-$2");
+  };
+
 useEffect(() => {
   const user = ref.current;
   if (onEdit) {
