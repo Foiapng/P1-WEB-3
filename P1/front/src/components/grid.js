@@ -33,7 +33,7 @@ const Grid = ({ users, setUsers, setOnEdit }) => {
 
 const handleDelete = async (idusuarios) => {
   try {
-    const { data } = await axios.delete(`http://localhost:8800/usuarios/${idusuarios}`);
+    const { data } = await axios.delete(`https://web-3-z2aw.onrender.com/usuarios/${idusuarios}`);
     setUsers(users.filter((user) => user.idusuarios !== idusuarios));
     toast.success(data || "Usuário deletado com sucesso!");
     setOnEdit(null);

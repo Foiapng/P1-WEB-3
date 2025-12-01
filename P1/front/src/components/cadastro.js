@@ -28,7 +28,7 @@ const Cadastro = ({  }) => {
     }
 
     try {
-      await axios.post("http://localhost:8800/usuarios", {
+      await axios.post("https://web-3-z2aw.onrender.com/usuarios", {
         nome: user.nome.value,
         email: user.email.value,
         senha: user.senha.value,
@@ -45,7 +45,7 @@ const Cadastro = ({  }) => {
       user.telefone.value = "";
       user.data_nascimento.value = "";
 
-      window.location.href = "/login";
+      window.location.href = "/Login";
 
     } catch (err) {
       toast.error(err.response?.data || "Erro ao salvar usuário");

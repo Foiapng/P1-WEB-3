@@ -17,7 +17,7 @@ function App() {
 
   const getUsers = async () => {
     try {
-      const res = await axios.get("http://localhost:8800/usuarios");
+      const res = await axios.get("https://web-3-z2aw.onrender.com/usuarios");
       setUsers(res.data.sort((a, b) => (a.nome > b.nome ? 1 : -1)));
     } catch (error) {
       toast.error("Erro ao buscar usuários");
