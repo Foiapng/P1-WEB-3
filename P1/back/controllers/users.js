@@ -36,7 +36,6 @@ export const addUser = async (req, res) => {
 
 
 export const updateUser = async (req, res) => {
-  // Sempre hasheia SENHA NOVA
   const hash = await bcrypt.hash(req.body.senha, 10);
 
   const q =
@@ -45,7 +44,7 @@ export const updateUser = async (req, res) => {
   const values = [
     req.body.nome,
     req.body.email,
-    hash, // senha sempre hash!!!
+    hash, // senha hash
     req.body.telefone,
     req.body.data_nascimento,
   ];

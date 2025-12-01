@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import "./styles/colorMode.css";
@@ -17,7 +16,7 @@ const ColorMode = () => {
     }
   }, []);
 
-      // Função que troca o tema com transição e salva
+
       const applyTheme = (theme) => {
         const html = document.documentElement;
         const themes = ["Dark", "Cyan", "Green", "Purple"];
@@ -31,7 +30,6 @@ const ColorMode = () => {
         // Salvar no localStorage
         localStorage.setItem("theme", theme);
 
-        // Remover a classe de animação quando acabar
         setTimeout(() => {
           html.classList.remove("TransicaoTema");
         }, 300);

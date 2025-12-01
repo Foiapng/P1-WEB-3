@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "./styles/usuarios.css";
@@ -46,7 +46,6 @@ useEffect(() => {
 
     try {
       if (onEdit && onEdit.idusuarios) {
-        // PUT corrigido com /usuarios
         await axios.put(`http://localhost:8800/usuarios/${onEdit.idusuarios}`, {
           nome: user.nome.value,
           email: user.email.value,
@@ -56,7 +55,6 @@ useEffect(() => {
         });
         toast.success("Usuário atualizado com sucesso!");
       } else {
-        // POST corrigido com /usuarios
         await axios.post("http://localhost:8800/usuarios", {
           nome: user.nome.value,
           email: user.email.value,

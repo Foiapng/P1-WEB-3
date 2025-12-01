@@ -1,17 +1,21 @@
 import express from "express";
 import userRoutes from "./routes/users.js";
-import authRoutes from "./routes/authRoutes.js"; // <-- ADICIONADO
+import authRoutes from "./routes/authRoutes.js"; 
 import cors from "cors";
 
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: "*", 
+  methods: "GET,POST,PUT,DELETE",
+}));
 
-// Rotas de LOGIN
-app.use("/auth", authRoutes); // <-- ADICIONADO
 
-// Rotas de CRUD de usuários
+
+app.use("/auth", authRoutes);
+
+
 app.use("/usuarios", userRoutes);
 
 app.listen(8800, () => {

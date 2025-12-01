@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:8800", // porta correta do backend
+  baseURL: "https://web-3-z2aw.onrender.com", // porta correta do backend
 });
 
 export default api;

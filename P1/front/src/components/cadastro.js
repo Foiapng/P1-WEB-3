@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import { useRef } from "react";
 import axios from "axios";
 import "./styles/cadastro.css";
 import "./styles/global.css";
@@ -23,7 +23,6 @@ const Cadastro = ({  }) => {
       return toast.warn("Preencha todos os campos!");
     }
 
-    // 🔥 Verificação de confirmação de senha
     if (user.senha.value !== user.senhaconfirma.value) {
       return toast.error("As senhas não coincidem!");
     }
@@ -39,7 +38,6 @@ const Cadastro = ({  }) => {
 
       toast.success("Usuário adicionado com sucesso!");
 
-      // Limpar formulário
       user.nome.value = "";
       user.email.value = "";
       user.senha.value = "";

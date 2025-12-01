@@ -1,6 +1,4 @@
 import { Routes, Route } from "react-router-dom"; 
-import { useState } from "react";
-import { BrowserRouter } from "react-router-dom";
 import LoginPage from "./LoginPage";
 import App from "./App";
 import CadastroPage from "./CadastroPage"

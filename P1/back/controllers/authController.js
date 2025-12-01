@@ -4,7 +4,7 @@ import { db } from "../db.js";
 
 const SECRET = process.env.JWT_SECRET || "supersecreto";
 
-export function login(req, res) {
+export async function login(req, res) {
   const { email, senha } = req.body;
 
   const q = "SELECT * FROM usuarios WHERE email = ? LIMIT 1";
@@ -17,15 +17,8 @@ export function login(req, res) {
 
     const user = data[0];
 
-    let senhaValida = false;
-
-    // Se a senha salva começar com $2 significa que é hash bcrypt
-    if (user.senha.startsWith("$2")) {
-      senhaValida = await bcrypt.compare(senha, user.senha);
-    } else {
-      // Senha em texto puro
-      senhaValida = senha === user.senha;
-    }
+    //hash bcrypt
+    const senhaValida = await bcrypt.compare(senha, user.senha);
 
     if (!senhaValida) {
       return res.status(401).json({ error: "Senha inválida" });
