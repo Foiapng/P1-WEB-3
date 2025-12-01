@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import { toast } from "react-toastify";
 import "./styles/usuarios.css";
-import "./styles/global.css"
+import "./styles/global.css";
 
 export const Th = styled.th`
   text-align: start;
@@ -26,22 +26,38 @@ export const Td = styled.td`
 `;
 
 const Grid = ({ users, setUsers, setOnEdit }) => {
+  
+  const formatPhone = (value) => {
+    if (!value) return "";
+    value = value.replace(/\D/g, "");
+
+    if (value.length > 11) value = value.slice(0, 11);
+
+    if (value.length <= 10) {
+      return value
+        .replace(/(\d{2})(\d)/, "($1) $2")
+        .replace(/(\d{4})(\d)/, "$1-$2");
+    }
+
+    return value
+      .replace(/(\d{2})(\d)/, "($1) $2")
+      .replace(/(\d{5})(\d)/, "$1-$2");
+  };
+
   const handleEdit = (item) => {
-    console.log(item); 
     setOnEdit(item);
   };
 
-const handleDelete = async (idusuarios) => {
-  try {
-    const { data } = await axios.delete(`https://web-3-z2aw.onrender.com/usuarios/${idusuarios}`);
-    setUsers(users.filter((user) => user.idusuarios !== idusuarios));
-    toast.success(data || "Usuário deletado com sucesso!");
-    setOnEdit(null);
-  } catch (err) {
-    toast.error(err.response?.data || "Erro ao excluir usuário");
-  }
-};
-
+  const handleDelete = async (idusuarios) => {
+    try {
+      const { data } = await axios.delete(`https://web-3-z2aw.onrender.com/usuarios/${idusuarios}`);
+      setUsers(users.filter((user) => user.idusuarios !== idusuarios));
+      toast.success(data || "Usuário deletado com sucesso!");
+      setOnEdit(null);
+    } catch (err) {
+      toast.error(err.response?.data || "Erro ao excluir usuário");
+    }
+  };
 
   return (
     <table className="UsuariosTable">
@@ -61,7 +77,7 @@ const handleDelete = async (idusuarios) => {
             <Td width="30%">{item.nome}</Td>
             <Td width="30%">{item.email}</Td>
             <Td width="20%" onlyweb>
-              {item.telefone}
+              {formatPhone(item.telefone)}
             </Td>
 
             <Td alignCenter width="5%">

@@ -4,14 +4,29 @@ import "./styles/cadastro.css";
 import "./styles/global.css";
 import { toast } from "react-toastify";
 
-const Cadastro = ({  }) => {
+const Cadastro = () => {
   const ref = useRef();
+
+  const formatPhone = (value) => {
+    value = value.replace(/\D/g, "");
+
+    if (value.length > 11) value = value.slice(0, 11);
+
+    if (value.length <= 10) {
+      return value
+        .replace(/(\d{2})(\d)/, "($1) $2")
+        .replace(/(\d{4})(\d)/, "$1-$2");
+    }
+
+    return value
+      .replace(/(\d{2})(\d)/, "($1) $2")
+      .replace(/(\d{5})(\d)/, "$1-$2");
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const user = ref.current;
 
-    // Verificar se todos os campos estão preenchidos
     if (
       !user.nome.value ||
       !user.email.value ||
@@ -45,8 +60,6 @@ const Cadastro = ({  }) => {
       user.telefone.value = "";
       user.data_nascimento.value = "";
 
-      window.location.href = "/Login";
-
     } catch (err) {
       toast.error(err.response?.data || "Erro ao salvar usuário");
     }
@@ -68,7 +81,11 @@ const Cadastro = ({  }) => {
 
       <section className="InputAreaCadastro">
         <label>Telefone</label>
-        <input name="telefone" />
+        <input
+          name="telefone"
+          maxLength={15}
+          onChange={(e) => (e.target.value = formatPhone(e.target.value))}
+        />
       </section>
 
       <section className="InputAreaCadastro">
