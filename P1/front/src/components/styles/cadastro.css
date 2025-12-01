@@ -14,7 +14,7 @@
     align-items: center;
     gap: 20px;
     flex-wrap: nowrap;
-    background-color: #000000ff;
+    background-color: var(--main-color);
     padding: 150px 30px 200px;
     border-radius: 5px;
     height: 450px;
@@ -32,7 +32,7 @@
 .InputAreaCadastro input{
     width:  100%;
     padding: 0px 10px;
-    border: 1px solid #bbb;
+    border: 1px solid var(--secondary-accent-color);
     border-radius: 5px;
     -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
     -moz-box-sizing: border-box;    /* Firefox, other Gecko */
@@ -40,7 +40,7 @@
 }
 
 .InputAreaCadastro label {
-    color: #fff;
+    color: var(--font-color);
 }
 
 .InputGroupCadastro {
@@ -53,7 +53,7 @@
 .TitleCadastro{
     width: 90%;
     margin-top: 10%;
-    color: #fff;
+    color: var(--font-color);
 
 }
 

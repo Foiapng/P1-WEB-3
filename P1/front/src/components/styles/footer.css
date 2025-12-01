@@ -1,5 +1,5 @@
 .Footer {
-    background-color: #000;
+    background-color: var(--main-color);
     position:fixed;
     bottom: 0%;
     width: 100%;
@@ -7,5 +7,5 @@
 
 
 .FooterInfo {
-    color: #fff;
+    color: var(--font-color);
 }

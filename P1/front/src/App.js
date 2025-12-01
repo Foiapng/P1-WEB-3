@@ -8,6 +8,7 @@ import styled from "styled-components";
 import Form from "./components/form.js";
 import Grid from "./components/grid.js";
 import axios from "axios";
+import Header from "./Header.js";
 
 
 function App() {

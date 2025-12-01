@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "./styles/usuarios.css";
+import "./styles/global.css"
 
 const Form = ({ getUsers, onEdit, setOnEdit }) => {
   const ref = useRef();

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import { toast } from "react-toastify";
 import "./styles/usuarios.css";
-
+import "./styles/global.css"
 
 export const Th = styled.th`
   text-align: start;

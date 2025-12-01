@@ -8,7 +8,7 @@
 }
 
 .Usuarios {
-    background-color: #000;
+    background-color: var(--main-color);
     border-radius: 5px;
     padding: 70px 100px;
     display: flex;
@@ -19,7 +19,7 @@
 /* Form */
 
 .UsuariosTitle {
-    color: #fff;
+    color: var(--font-color);
     margin-bottom: 5%;
     width: 100%;
 }
@@ -31,7 +31,7 @@
     align-items: center;
     gap: 10px;
     flex-wrap: wrap;
-    background-color: #000000;
+    background-color: var(--main-color);
     padding: 20px;
     border-radius: 5px;
 }
@@ -54,12 +54,12 @@
 .UsuariosInputArea input{
     width: 120px;
     padding: 0 10px;
-    border: 1px solid #000000;
+    border: 1px solid var(--main-color);
     border-radius: 5px;
 }
 
 .UsuariosInputArea label{
-    color: #ffffff;
+    color: var(--font-color);
 }
 
 
@@ -82,13 +82,13 @@
 
 .UsuariosTable{
     width: 100%;
-    background-color: #000000;
+    background-color: var(--main-color);;
     padding: 20px;
     border-radius: 5px;
     max-width: 800px;
     margin: 10% auto 0;
     word-break: break-all;
-    color: #fff;
+    color: var(--font-color);
     border-collapse: collapse;
 }
 

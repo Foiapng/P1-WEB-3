@@ -14,8 +14,8 @@
     align-items: center;
     gap: 20px;
     flex-wrap: nowrap;
-    background-color: #000000ff;
-    padding: 150px 100px;
+    background-color: var(--main-color);
+    padding: 150px 0;
     border-radius: 5px;
     height: 200px;
     width: 50%;
@@ -32,7 +32,7 @@
 .InputAreaLogin input{
     width: 100%;
     padding: 0 10px;
-    border: 1px solid #bbb;
+    border: 1px solid var(--secondary-accent-color);
     border-radius: 5px;
     -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
     -moz-box-sizing: border-box;    /* Firefox, other Gecko */
@@ -40,11 +40,11 @@
 }
 
 .InputAreaLogin label {
-    color: #fff;
+    color: var(--font-color);
 }
 
 .TitleLogin{
-    color: #fff;
+    color: var(--font-color);
     margin-bottom: 5%;
 }
 

@@ -1,5 +1,73 @@
-#root{
+:root{
     width: 100%;
+    --bg-color: #2e2e2e;
+    --font-color: white;
+    --secondary-font-color: black;
+    --main-color: black;
+    --secondary-color: white;
+    --accent-color: #1a1a1a;
+    --secondary-accent-color: #bbb;
+
+
+    background-color: var(--bg-color);
+}
+
+#root {
+    width: 100%;
+}
+
+html.Light {
+    --bg-color: #ffffff;
+    --font-color: black;
+    --secondary-font-color: white;
+    --main-color: rgb(230, 230, 230);
+    --secondary-color: rgb(112, 112, 112);
+    --accent-color: #bcbcbc;
+    --secondary-accent-color: #363636;
+}
+html.Dark {
+    --bg-color: #2e2e2e;
+    --font-color: white;
+    --secondary-font-color: black;
+    --main-color: black;
+    --secondary-color: white;
+    --accent-color: #1a1a1a;
+    --secondary-accent-color: #bbb;
+}
+
+
+html.Cyan {
+    --bg-color: #203336;
+    --font-color: white;
+    --secondary-font-color: black;
+    --main-color: rgb(10, 80, 80);
+    --secondary-color: rgb(89, 165, 141);
+    --accent-color: #063236;
+    --secondary-accent-color: #bbb;
+}
+
+html.Green {
+    --bg-color: #0b1c13;
+    --font-color: white;
+    --secondary-font-color: black;
+    --main-color: rgb(15, 90, 46);
+    --secondary-color: rgb(159, 205, 146);
+    --accent-color: #103b26;
+    --secondary-accent-color: #408657;
+}
+
+html.Purple {
+    --bg-color: #0c0110;
+    --font-color: white;
+    --secondary-font-color: black;
+    --main-color: rgb(38, 22, 45);
+    --secondary-color: rgb(174, 154, 178);
+    --accent-color: #200423;
+    --secondary-accent-color: #a286a8;
+}
+
+html.TransicaoTema {
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 * {
@@ -13,11 +81,10 @@ body {
     height: 100vw;
     display: flex;
     justify-content: center;
-    background-color: #f2f2f2;
 }
 
 input {
-    border: 1px solid #000000;
+    border: 1px solid var(--accent-color);
     border-radius: 5px;
     height: 40px;
 }
@@ -27,8 +94,8 @@ label {
 }
 
 button {
-    background-color: rgb(55, 55, 55);
-    color: #fff; 
+    background-color:var(--accent-color);
+    color: var(--font-color); 
     cursor: pointer;
     border-radius: 5px;
     border: none;
@@ -36,8 +103,8 @@ button {
 }
 
 button:hover {
-    background-color: #ffffff;
-    color: #000000;
+    background-color: var(--secondary-color);
+    color: var(--secondary-font-color);
     transition: ease-in 0.1s;
 }
 

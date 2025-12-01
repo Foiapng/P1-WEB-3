@@ -1,0 +1,30 @@
+.HomePageContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 5%;
+}
+
+.HomeContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: nowrap;
+    background-color: var(--main-color);;
+    padding: 150px 100px;
+    border-radius: 5px;
+    height: 200px;
+    width: 30%;
+    color: var(--font-color);
+}
+
+
+.TitleHome{
+    color: var(--font-color);
+    margin-bottom: 5%;
+}
+

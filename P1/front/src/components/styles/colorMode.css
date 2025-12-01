@@ -1,0 +1,92 @@
+
+.ColorBtn {
+  font-size: 1rem;
+  bottom: 5%;
+  left: 2.5%;
+  padding: 10px 10px;
+  border-radius: 30px;
+  position: fixed;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  color: var(--font-color);
+  background-color: var(--accent-color);
+  transition: ease-in-out 0.2s;
+  z-index: 1
+}
+
+
+
+
+.ColorDropdown {
+  display: none;
+  position: fixed;
+  background-color: var(--secondary-color);
+  min-width: 120px;
+  z-index: 1;
+  bottom: 12%;
+  left: 2.5%;
+  border-radius: 0 0 10px 10px;
+
+}
+
+.ColorDropdown link {
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+
+}
+
+.ColorDropdown li {
+  list-style-type: none;
+  text-justify: center;
+  background-color: var(--secondary-color);
+}
+
+.show {
+  display:flex;
+  flex-direction: column;
+}
+
+.Color {
+    display: inline-block;
+    background: none;
+    border: none;
+    text-decoration: none;
+    color: var(--secondary-font-color);
+    padding: 10px;
+    font-size: 1rem;
+}
+
+.ColorTemaBtn {
+  border-radius: 0;
+  padding: 10px;
+}
+
+.Color:hover {
+    cursor: pointer;
+    color: var(--accent-color);
+}
+
+.ColorBtn:hover, .ColorBtn:focus {
+  background-color: var(--secondary-color);
+  color: var(--secondary-font-color);
+}
+
+.ColorBtn:focus {
+  border-radius: 0 0 100% 100%;
+}
+
+.ColorBtn:hover .ColorIcon{
+  filter: invert(0%);
+}
+.ColorBtn:focus .ColorIcon{
+  filter: invert(0%);
+}
+
+.ColorIcon {
+  height: 28px;
+  width: 32px;
+  filter: invert(100%);
+  transition: ease-in-out 0.2s;
+}
