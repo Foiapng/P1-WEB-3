@@ -7,7 +7,7 @@ import "./styles/global.css"
 const Form = ({ getUsers, onEdit, setOnEdit }) => {
   const ref = useRef();
 
-    const formatPhone = (value) => {
+  const formatPhone = (value) => {
     if (!value) return "";
     value = value.replace(/\D/g, "");
 
@@ -24,28 +24,29 @@ const Form = ({ getUsers, onEdit, setOnEdit }) => {
       .replace(/(\d{5})(\d)/, "$1-$2");
   };
 
-useEffect(() => {
-  const user = ref.current;
-  if (onEdit) {
-    user.nome.value = onEdit.nome;
-    user.email.value = onEdit.email;
-    user.senha.value = onEdit.senha;
-    user.telefone.value = onEdit.telefone;
+  useEffect(() => {
+    const user = ref.current;
+    if (onEdit) {
+      user.nome.value = onEdit.nome;
+      user.email.value = onEdit.email;
+      user.senha.value = onEdit.senha;
 
-    // Converter a data para YYYY-MM-DD
-    if (onEdit.data_nascimento) {
-      const date = new Date(onEdit.data_nascimento);
-      const formattedDate = date.toISOString().split("T")[0]; // YYYY-MM-DD
-      user.data_nascimento.value = formattedDate;
+      // aplica a máscara ao carregar para edição
+      user.telefone.value = formatPhone(onEdit.telefone);
+
+      if (onEdit.data_nascimento) {
+        const date = new Date(onEdit.data_nascimento);
+        const formattedDate = date.toISOString().split("T")[0];
+        user.data_nascimento.value = formattedDate;
+      }
+    } else {
+      user.nome.value = "";
+      user.email.value = "";
+      user.senha.value = "";
+      user.telefone.value = "";
+      user.data_nascimento.value = "";
     }
-  } else {
-    user.nome.value = "";
-    user.email.value = "";
-    user.senha.value = "";
-    user.telefone.value = "";
-    user.data_nascimento.value = "";
-  }
-}, [onEdit]);
+  }, [onEdit]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -63,13 +64,17 @@ useEffect(() => {
 
     try {
       if (onEdit && onEdit.idusuarios) {
-        await axios.put(`https://web-3-z2aw.onrender.com/usuarios/${onEdit.idusuarios}`, {
-          nome: user.nome.value,
-          email: user.email.value,
-          senha: user.senha.value,
-          telefone: user.telefone.value,
-          data_nascimento: user.data_nascimento.value,
-        });
+        await axios.put(
+          `https://web-3-z2aw.onrender.com/usuarios/${onEdit.idusuarios}`,
+          {
+            nome: user.nome.value,
+            email: user.email.value,
+            senha: user.senha.value,
+            telefone: user.telefone.value,
+            data_nascimento: user.data_nascimento.value,
+          }
+        );
+
         toast.success("Usuário atualizado com sucesso!");
       } else {
         await axios.post("https://web-3-z2aw.onrender.com/usuarios", {
@@ -79,10 +84,10 @@ useEffect(() => {
           telefone: user.telefone.value,
           data_nascimento: user.data_nascimento.value,
         });
+
         toast.success("Usuário adicionado com sucesso!");
       }
 
-      // Limpar formulário
       user.nome.value = "";
       user.email.value = "";
       user.senha.value = "";
@@ -91,6 +96,7 @@ useEffect(() => {
 
       setOnEdit(null);
       getUsers();
+
     } catch (err) {
       toast.error(err.response?.data || "Erro ao salvar usuário");
     }
@@ -99,31 +105,40 @@ useEffect(() => {
   return (
     <form className="UsuariosFormContainer" ref={ref} onSubmit={handleSubmit}>
       <h1 className="UsuariosTitle">Usuários</h1>
+
       <section className="UsuariosFormInputs">
-          <section className="UsuariosInputArea">
-            <label>Nome</label>
-            <input name="nome" />
-          </section>
 
-          <section className="UsuariosInputArea">
-            <label>E-mail</label>
-            <input name="email" type="email" autoComplete="email" />
-          </section>
+        <section className="UsuariosInputArea">
+          <label>Nome</label>
+          <input name="nome" />
+        </section>
 
-          <section className="UsuariosInputArea">
-            <label>Senha</label>
-            <input name="senha" type="password" />
-          </section>
+        <section className="UsuariosInputArea">
+          <label>E-mail</label>
+          <input name="email" type="email" autoComplete="email" />
+        </section>
 
-          <section className="UsuariosInputArea">
-            <label>Telefone</label>
-            <input name="telefone" />
-          </section>
-          
-          <section className="UsuariosInputArea">
-            <label>Nascimento</label>
-            <input name="data_nascimento" type="date" />
-          </section>
+        <section className="UsuariosInputArea">
+          <label>Senha</label>
+          <input name="senha" type="password" />
+        </section>
+
+        <section className="UsuariosInputArea">
+          <label>Telefone</label>
+          <input
+            name="telefone"
+            onChange={(e) => {
+              const user = ref.current;
+              user.telefone.value = formatPhone(e.target.value);
+            }}
+          />
+        </section>
+
+        <section className="UsuariosInputArea">
+          <label>Nascimento</label>
+          <input name="data_nascimento" type="date" />
+        </section>
+
       </section>
 
       <button type="submit" className="UsuariosButton">

@@ -11,10 +11,10 @@ const Home = () => {
 
   return (
     <section className="HomeContainer">
-          <h1 className="TitleHome">Aviso</h1>
+          <h1 className="TitleHome">Disclaimer</h1>
           <text>Esse pequeno projeto foi feito pra aula de DW3,
-            já que foi feito por uma só pessoa sem tema pensado, 
-            acabou ficando bem simples.
+            e foi feito por uma só pessoa sem ter tema pensado, 
+            por isso acabou ficando bem simples.
           </text> 
     </section>
   );    

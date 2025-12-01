@@ -1,12 +1,32 @@
-import { useRef, useEffect } from "react";
 import axios from "axios";
+import styled from "styled-components";
+import { FaTrash, FaEdit } from "react-icons/fa";
 import { toast } from "react-toastify";
 import "./styles/usuarios.css";
-import "./styles/global.css"
+import "./styles/global.css";
 
-const Form = ({ getUsers, onEdit, setOnEdit }) => {
-  const ref = useRef();
+export const Th = styled.th`
+  text-align: start;
+  border-bottom: inset;
+  padding-bottom: 5px;
 
+  @media (max-width: 500px) {
+    ${(props) => props.onlyweb && "display: none;"}
+  }
+`;
+
+export const Td = styled.td`
+  padding-top: 15px;
+  text-align: ${(props) => (props.alignCenter ? "center" : "start")};
+  width: ${(props) => (props.width ? props.width : "auto")};
+
+  @media (max-width: 400px) {
+    ${(props) => props.onlyweb && "display: none;"}
+  }
+`;
+
+const Grid = ({ users, setUsers, setOnEdit }) => {
+  
   const formatPhone = (value) => {
     if (!value) return "";
     value = value.replace(/\D/g, "");
@@ -24,128 +44,54 @@ const Form = ({ getUsers, onEdit, setOnEdit }) => {
       .replace(/(\d{5})(\d)/, "$1-$2");
   };
 
-  useEffect(() => {
-    const user = ref.current;
-    if (onEdit) {
-      user.nome.value = onEdit.nome;
-      user.email.value = onEdit.email;
-      user.senha.value = onEdit.senha;
+  const handleEdit = (item) => {
+    setOnEdit(item);
+  };
 
-      // aplica a máscara ao carregar para edição
-      user.telefone.value = formatPhone(onEdit.telefone);
-
-      if (onEdit.data_nascimento) {
-        const date = new Date(onEdit.data_nascimento);
-        const formattedDate = date.toISOString().split("T")[0];
-        user.data_nascimento.value = formattedDate;
-      }
-    } else {
-      user.nome.value = "";
-      user.email.value = "";
-      user.senha.value = "";
-      user.telefone.value = "";
-      user.data_nascimento.value = "";
-    }
-  }, [onEdit]);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const user = ref.current;
-
-    if (
-      !user.nome.value ||
-      !user.email.value ||
-      !user.senha.value ||
-      !user.telefone.value ||
-      !user.data_nascimento.value
-    ) {
-      return toast.warn("Preencha todos os campos!");
-    }
-
+  const handleDelete = async (idusuarios) => {
     try {
-      if (onEdit && onEdit.idusuarios) {
-        await axios.put(
-          `https://web-3-z2aw.onrender.com/usuarios/${onEdit.idusuarios}`,
-          {
-            nome: user.nome.value,
-            email: user.email.value,
-            senha: user.senha.value,
-            telefone: user.telefone.value,
-            data_nascimento: user.data_nascimento.value,
-          }
-        );
-
-        toast.success("Usuário atualizado com sucesso!");
-      } else {
-        await axios.post("https://web-3-z2aw.onrender.com/usuarios", {
-          nome: user.nome.value,
-          email: user.email.value,
-          senha: user.senha.value,
-          telefone: user.telefone.value,
-          data_nascimento: user.data_nascimento.value,
-        });
-
-        toast.success("Usuário adicionado com sucesso!");
-      }
-
-      user.nome.value = "";
-      user.email.value = "";
-      user.senha.value = "";
-      user.telefone.value = "";
-      user.data_nascimento.value = "";
-
+      const { data } = await axios.delete(`https://web-3-z2aw.onrender.com/usuarios/${idusuarios}`);
+      setUsers(users.filter((user) => user.idusuarios !== idusuarios));
+      toast.success(data || "Usuário deletado com sucesso!");
       setOnEdit(null);
-      getUsers();
-
     } catch (err) {
-      toast.error(err.response?.data || "Erro ao salvar usuário");
+      toast.error(err.response?.data || "Erro ao excluir usuário");
     }
   };
 
   return (
-    <form className="UsuariosFormContainer" ref={ref} onSubmit={handleSubmit}>
-      <h1 className="UsuariosTitle">Usuários</h1>
+    <table className="UsuariosTable">
+      <thead className="UsuariosThead">
+        <tr className="UsuariosTr">
+          <Th>Nome</Th>
+          <Th>Email</Th>
+          <Th onlyweb>Telefone</Th>
+          <Th></Th>
+          <Th></Th>
+        </tr>
+      </thead>
 
-      <section className="UsuariosFormInputs">
+      <tbody className="UsuariosTbody">
+        {users.map((item, i) => (
+          <tr key={i}>
+            <Td width="30%">{item.nome}</Td>
+            <Td width="30%">{item.email}</Td>
+            <Td width="20%" onlyweb>
+              {formatPhone(item.telefone)}
+            </Td>
 
-        <section className="UsuariosInputArea">
-          <label>Nome</label>
-          <input name="nome" />
-        </section>
+            <Td alignCenter width="5%">
+              <FaEdit onClick={() => handleEdit(item)} style={{ cursor: "pointer", color: "#ffffffff" }} />
+            </Td>
 
-        <section className="UsuariosInputArea">
-          <label>E-mail</label>
-          <input name="email" type="email" autoComplete="email" />
-        </section>
-
-        <section className="UsuariosInputArea">
-          <label>Senha</label>
-          <input name="senha" type="password" />
-        </section>
-
-        <section className="UsuariosInputArea">
-          <label>Telefone</label>
-          <input
-            name="telefone"
-            onChange={(e) => {
-              const user = ref.current;
-              user.telefone.value = formatPhone(e.target.value);
-            }}
-          />
-        </section>
-
-        <section className="UsuariosInputArea">
-          <label>Nascimento</label>
-          <input name="data_nascimento" type="date" />
-        </section>
-
-      </section>
-
-      <button type="submit" className="UsuariosButton">
-        Salvar
-      </button>
-    </form>
+            <Td alignCenter width="5%">
+              <FaTrash onClick={() => handleDelete(item.idusuarios)} style={{ cursor: "pointer", color: "#ffffffff" }} />
+            </Td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
 };
 
-export default Form;
+export default Grid;
